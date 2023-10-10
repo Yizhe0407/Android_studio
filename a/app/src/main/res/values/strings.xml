@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Calc</string>
+    <string name="one">1</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="multiplication">×</string>
+    <string name="division">÷</string>
+    <string name="C">C</string>
+    <string name="delete">←</string>
+    <string name="equal">=</string>
+    <string name="editText1">  </string>
+    <string name="decimal">Decimal : 0</string>
+    //tools:ignore="SpeakableTextPresentCheck"
+</resources>
