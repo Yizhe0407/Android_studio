@@ -353,4 +353,67 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("EditTextText", EditText.getText().toString());
+        outState.putString("DecimalText", Decimal.getText().toString());
+        outState.putBoolean("isBlackBackground", isBlackBackground);
+        // 保存背景设置
+        outState.putInt("layoutBackgroundResource", isBlackBackground ? R.drawable.dark_background : R.drawable.light_background);
+        // 保存EditText的背景资源ID
+        outState.putInt("editTextBackground", isBlackBackground ? R.drawable.round_edittext_dark : R.drawable.round_edittext_light);
+
+        outState.putInt("oneTextColor", One.getCurrentTextColor());
+        outState.putInt("plusTextColor", Plus.getCurrentTextColor());
+        outState.putInt("minusTextColor", Minus.getCurrentTextColor());
+        outState.putInt("multiplicationTextColor", Multiplication.getCurrentTextColor());
+        outState.putInt("divisionTextColor", Division.getCurrentTextColor());
+        outState.putInt("equalTextColor", Equal.getCurrentTextColor());
+        outState.putInt("deleteTextColor", Delete.getCurrentTextColor());
+        outState.putInt("clearTextColor", Clear.getCurrentTextColor());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        String editTextText = savedInstanceState.getString("EditTextText");
+        String decimalText = savedInstanceState.getString("DecimalText");
+        isBlackBackground = savedInstanceState.getBoolean("isBlackBackground");
+        // 恢复背景设置
+        int layoutBackgroundResource = savedInstanceState.getInt("layoutBackgroundResource");
+        layout.setBackgroundResource(layoutBackgroundResource);
+
+        // 恢复EditText的背景
+        int editTextBackground = savedInstanceState.getInt("editTextBackground");
+        EditText.setBackgroundResource(editTextBackground);
+
+        // 恢复按钮的文本颜色
+        One.setTextColor(savedInstanceState.getInt("oneTextColor"));
+        Plus.setTextColor(savedInstanceState.getInt("plusTextColor"));
+        Minus.setTextColor(savedInstanceState.getInt("minusTextColor"));
+        Multiplication.setTextColor(savedInstanceState.getInt("multiplicationTextColor"));
+        Division.setTextColor(savedInstanceState.getInt("divisionTextColor"));
+        Equal.setTextColor(savedInstanceState.getInt("equalTextColor"));
+        Delete.setTextColor(savedInstanceState.getInt("deleteTextColor"));
+        Clear.setTextColor(savedInstanceState.getInt("clearTextColor"));
+
+        // 恢复按钮的背景
+        One.setBackgroundResource(savedInstanceState.getInt("oneBackground"));
+        Plus.setBackgroundResource(savedInstanceState.getInt("plusBackground"));
+        Minus.setBackgroundResource(savedInstanceState.getInt("minusBackground"));
+        Multiplication.setBackgroundResource(savedInstanceState.getInt("multiplicationBackground"));
+        Division.setBackgroundResource(savedInstanceState.getInt("divisionBackground"));
+        Equal.setBackgroundResource(savedInstanceState.getInt("equalBackground"));
+        Delete.setBackgroundResource(savedInstanceState.getInt("deleteBackground"));
+        Clear.setBackgroundResource(savedInstanceState.getInt("clearBackground"));
+
+        // 恢复其他需要的数据
+        EditText.setText(editTextText);
+        Decimal.setText(decimalText);
+        // 根据isBlackBackground设置文本颜色
+        int textColor = isBlackBackground ? Color.WHITE : Color.BLACK;
+        EditText.setTextColor(textColor);
+        Decimal.setTextColor(textColor);
+    }
 }
