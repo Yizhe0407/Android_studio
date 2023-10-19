@@ -12,27 +12,29 @@
     <EditText
         android:id="@+id/editText"
         android:layout_width="346dp"
-        android:layout_height="69dp"
+        android:layout_height="90dp"
         android:background="@drawable/round_edittext_light"
-        android:ems="10"
-        android:inputType="text"
-        android:maxLength="23"
+        android:focusable="false"
+        android:inputType="textMultiLine"
+        android:lines="2"
         android:padding="12dp"
+        android:scrollbars="vertical"
         android:text="@string/editText1"
         android:textColor="#000000"
         android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintHorizontal_bias="0.458"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.8" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="225dp" />
+        app:layout_constraintGuide_percent="0.3" />
 
     <androidx.gridlayout.widget.GridLayout
         android:layout_width="wrap_content"
@@ -181,20 +183,72 @@
         android:background="#00000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/dark_mode" />
+        app:srcCompat="@drawable/dark_mode_black_36dp" />
 
-    <TextView
-        android:id="@+id/decimal"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/decimal"
-        android:textColor="@color/black"
-        android:textSize="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/guideline7"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/editText">
+
+        <TextView
+            android:id="@+id/summand"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/round_textview"
+            android:gravity="center"
+            android:text="@string/textview"
+            android:textColor="#000000"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/operator"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:text="@string/textview"
+            android:textColor="#000000"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/addend"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/round_textview"
+            android:gravity="center"
+            android:text="@string/textview"
+            android:textColor="#000000"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:text="@string/equal"
+            android:textColor="#000000"
+            android:textSize="25dp"
+            tools:layout_editor_absoluteX="48dp"
+            tools:layout_editor_absoluteY="64dp" />
+
+        <TextView
+            android:id="@+id/result"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/round_textview"
+            android:gravity="center"
+            android:text="@string/textview"
+            android:textColor="#000000"
+            android:textSize="20dp" />
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

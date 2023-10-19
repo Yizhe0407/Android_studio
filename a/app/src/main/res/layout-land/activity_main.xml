@@ -178,7 +178,7 @@
         android:background="#00000000"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/dark_mode" />
+        app:srcCompat="@drawable/dark_mode_black_36dp" />
 
 
     <TextView

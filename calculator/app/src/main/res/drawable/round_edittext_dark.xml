@@ -3,7 +3,7 @@
     <!-- 内部填充的形状 -->
     <item android:id="@android:id/background">
         <shape android:shape="rectangle">
-            <solid android:color="#20a7a8bd" />
+            <solid android:color="#20C7C7CA" />
             <corners android:radius="10dp" />
         </shape>
     </item>
