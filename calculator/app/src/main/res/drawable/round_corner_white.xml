@@ -11,10 +11,11 @@
                 android:radius="25dp" />
             <!--漸層顏色-->
             <gradient
-                android:type="radial"
-                android:startColor="#B9B4B4"
-                android:endColor="#66B9B4B4"
-                android:gradientRadius="90%" />
+                android:type="linear"
+                android:angle="45"
+                android:startColor="#f3e7e9"
+                android:endColor="#e3eeff"
+                android:gradientRadius="50%" />
         </shape>
     </item>
 
@@ -26,10 +27,11 @@
             <corners
                 android:radius="20dp" />
             <gradient
-                android:type="radial"
-                android:startColor="#FFFFFF"
-                android:endColor="#66DBDBDB"
-                android:gradientRadius="90%" />
+                android:type="linear"
+                android:angle="45"
+                android:startColor="#dfe9f3"
+                android:endColor="#ffffff"
+                android:gradientRadius="50%" />
         </shape>
     </item>
 

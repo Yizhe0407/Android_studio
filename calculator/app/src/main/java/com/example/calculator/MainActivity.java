@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     Button One, Plus, Minus, Multiplication, Division, Equal, Delete, Clear, Lazy1, Lazy2, Lazy3;
     ImageButton Mode;
     ConstraintLayout layout;
-    TextView EditText, Summand, Addend, Result, Operator, Equal2;
+    TextView Display, Summand, Addend, Result, Operator, Equal2;
     boolean isBlackBackground = false;
     boolean lock = true;
     private boolean isEqualPressed = false, calc = false;
@@ -27,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        EditText = findViewById(R.id.editText);
-        EditText.setText("");
+        Display = findViewById(R.id.display);
+        Display.setText("");
         One = findViewById(R.id.one);
         Plus = findViewById(R.id.plus);
         Minus = findViewById(R.id.minus);
@@ -49,94 +49,81 @@ public class MainActivity extends AppCompatActivity {
         Lazy3 = findViewById(R.id.lazy3);
 
 
-        Lazy1.setOnClickListener(new View.OnClickListener() {
+        View.OnClickListener lazyClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 lock = true;
                 if (calc) {
-                    EditText.append("111");
+                    Display.append(view.getTag().toString());
                     calc = false;
                     isEqualPressed = false;
                 } else {
                     if (isEqualPressed) {
                         // 清除EditText並重置標誌
-                        EditText.setText("");
+                        Display.setText("");
                         isEqualPressed = false;
                     }
 
-                    EditText.append("111");
+                    Display.append(view.getTag().toString());
                 }
             }
-        });
+        };
 
-        Lazy2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                lock = true;
-                if (calc) {
-                    EditText.append("11111");
-                    calc = false;
-                    isEqualPressed = false;
-                } else {
-                    if (isEqualPressed) {
-                        // 清除EditText並重置標誌
-                        EditText.setText("");
-                        isEqualPressed = false;
-                    }
+        Lazy1.setOnClickListener(lazyClickListener);
+        Lazy1.setTag("111");
 
-                    EditText.append("11111");
-                }
-            }
-        });
+        Lazy2.setOnClickListener(lazyClickListener);
+        Lazy2.setTag("11111");
 
-        Lazy3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                lock = true;
-                if (calc) {
-                    EditText.append("1111111111");
-                    calc = false;
-                    isEqualPressed = false;
-                } else {
-                    if (isEqualPressed) {
-                        // 清除EditText並重置標誌
-                        EditText.setText("");
-                        isEqualPressed = false;
-                    }
-
-                    EditText.append("1111111111");
-                }
-            }
-        });
+        Lazy3.setOnClickListener(lazyClickListener);
+        Lazy3.setTag("1111111111");
 
         Mode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // 檢查目前背景狀態並設定不同的背景
                 if (isBlackBackground) {
-                    layout.setBackgroundResource(R.drawable.light_background); // 切换回蓝色背景
+                    layout.setBackgroundResource(R.drawable.light_background);
                     Mode.setImageDrawable(getResources().getDrawable(R.drawable.dark_mode_black_36dp));
-                    EditText.setBackgroundResource(R.drawable.round_edittext_light);
-                    EditText.setTextColor(Color.BLACK);
+                    Display.setBackgroundResource(R.drawable.round_edittext_light);
+                    Display.setTextColor(Color.BLACK);
                     Operator.setTextColor(Color.BLACK);
                     Equal2.setTextColor(Color.BLACK);
                     Lazy1.setTextColor(Color.BLACK);
+                    Lazy1.setBackgroundResource(R.drawable.round_textview_white);
                     Lazy2.setTextColor(Color.BLACK);
+                    Lazy2.setBackgroundResource(R.drawable.round_textview_white);
                     Lazy3.setTextColor(Color.BLACK);
+                    Lazy3.setBackgroundResource(R.drawable.round_textview_white);
+                    Summand.setTextColor(Color.BLACK);
+                    Summand.setBackgroundResource(R.drawable.round_textview_white);
+                    Addend.setTextColor(Color.BLACK);
+                    Addend.setBackgroundResource(R.drawable.round_textview_white);
+                    Result.setTextColor(Color.BLACK);
+                    Result.setBackgroundResource(R.drawable.round_textview_white);
                 } else {
-                    layout.setBackgroundResource(R.drawable.dark_background); // 切换到黑色背景
+                    layout.setBackgroundResource(R.drawable.dark_background);
                     Mode.setImageDrawable(getResources().getDrawable(R.drawable.light_mode_white_36dp));
-                    EditText.setBackgroundResource(R.drawable.round_edittext_dark);
-                    EditText.setTextColor(Color.WHITE);
+                    Display.setBackgroundResource(R.drawable.round_edittext_dark);
+                    Display.setTextColor(Color.WHITE);
                     Operator.setTextColor(Color.WHITE);
                     Equal2.setTextColor(Color.WHITE);
                     Lazy1.setTextColor(Color.WHITE);
+                    Lazy1.setBackgroundResource(R.drawable.round_textview_dark);
                     Lazy2.setTextColor(Color.WHITE);
+                    Lazy2.setBackgroundResource(R.drawable.round_textview_dark);
                     Lazy3.setTextColor(Color.WHITE);
+                    Lazy3.setBackgroundResource(R.drawable.round_textview_dark);
+                    Summand.setTextColor(Color.WHITE);
+                    Summand.setBackgroundResource(R.drawable.round_textview_dark);
+                    Addend.setTextColor(Color.WHITE);
+                    Addend.setBackgroundResource(R.drawable.round_textview_dark);
+                    Result.setTextColor(Color.WHITE);
+                    Result.setBackgroundResource(R.drawable.round_textview_dark);
                 }
 
                 // 定義按鈕數組
-                Button[] buttons = new Button[] { One, Plus, Minus, Multiplication, Division, Equal, Delete, Clear, Lazy1, Lazy2, Lazy3 };
+                Button[] buttons = new Button[] { One, Plus, Minus, Multiplication, Division, Equal, Delete, Clear };
 
                 // 設定按鈕文字顏色和背景
                 int textColor = isBlackBackground ? Color.BLACK : Color.WHITE;
@@ -152,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        EditText.addTextChangedListener(new TextWatcher() {
+        Display.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 // 在文本改變之前執行的操作
@@ -176,52 +163,35 @@ public class MainActivity extends AppCompatActivity {
                 int indexOfDivide = text.indexOf("÷");
 
                 if (lock){
+                    String operator = "";  // 用于存储操作符号
+                    int operatorIndex = -1;  // 用于存储操作符号的索引
+
                     if (indexOfPlus != -1) {
-                        // 處理加法
-                        String summandText = text.substring(0, indexOfPlus);
-                        String addendText = text.substring(indexOfPlus + 1);
-
-                        int summandOneCount = countOnes(summandText);
-                        int addendOneCount = countOnes(addendText);
-
-                        Summand.setText(String.valueOf(summandOneCount));
-                        Addend.setText(String.valueOf(addendOneCount));
-                        Operator.setText("+");
+                        operator = "+";
+                        operatorIndex = indexOfPlus;
                     } else if (indexOfMinus != -1) {
-                        String summandText = text.substring(0, indexOfMinus);
-                        String addendText = text.substring(indexOfMinus + 1);
-
-                        int summandOneCount = countOnes(summandText);
-                        int addendOneCount = countOnes(addendText);
-
-                        // Assuming Summand and Addend are TextViews or similar UI elements
-                        Summand.setText(String.valueOf(summandOneCount));
-                        Addend.setText(String.valueOf(addendOneCount));
-                        Operator.setText("-");
+                        operator = "-";
+                        operatorIndex = indexOfMinus;
                     } else if (indexOfMultiply != -1) {
-                        String summandText = text.substring(0, indexOfMultiply);
-                        String addendText = text.substring(indexOfMultiply + 1);
-
-                        int summandOneCount = countOnes(summandText);
-                        int addendOneCount = countOnes(addendText);
-
-                        // Assuming Summand and Addend are TextViews or similar UI elements
-                        Summand.setText(String.valueOf(summandOneCount));
-                        Addend.setText(String.valueOf(addendOneCount));
-                        Operator.setText("×");
+                        operator = "×";
+                        operatorIndex = indexOfMultiply;
                     } else if (indexOfDivide != -1) {
-                        String summandText = text.substring(0, indexOfDivide);
-                        String addendText = text.substring(indexOfDivide + 1);
+                        operator = "÷";
+                        operatorIndex = indexOfDivide;
+                    }
+
+                    if (operatorIndex != -1) {
+                        String summandText = text.substring(0, operatorIndex);
+                        String addendText = text.substring(operatorIndex + 1);
 
                         int summandOneCount = countOnes(summandText);
                         int addendOneCount = countOnes(addendText);
 
-                        // Assuming Summand and Addend are TextViews or similar UI elements
                         Summand.setText(String.valueOf(summandOneCount));
                         Addend.setText(String.valueOf(addendOneCount));
-                        Operator.setText("÷");
+                        Operator.setText(operator);
                     } else {
-                        // 沒有操作符號，設置Summand和Addend為1的計數
+                        // 没有操作符号，设置Summand和Addend为1的计数
                         int oneCount = countOnes(text);
                         Summand.setText(String.valueOf(oneCount));
                     }
@@ -239,32 +209,30 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         One.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 lock = true;
                 if (calc) {
-                    EditText.append("1");
+                    Display.append("1");
                     calc = false;
                     isEqualPressed = false;
                 } else {
                     if (isEqualPressed) {
                         // 清除EditText並重置標誌
-                        EditText.setText("");
+                        Display.setText("");
                         isEqualPressed = false;
                     }
 
-                    EditText.append("1");
+                    Display.append("1");
                 }
             }
         });
 
-
         Plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String text = EditText.getText().toString();
+                String text = Display.getText().toString();
                 lock = true;
 
                 if (text.isEmpty()) {
@@ -288,7 +256,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 // 更新文本框的内容
-                EditText.setText(text);
+                Display.setText(text);
                 calc = true;
             }
         });
@@ -296,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
         Minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String text = EditText.getText().toString();
+                String text = Display.getText().toString();
                 lock = true;
 
                 if (text.isEmpty()) {
@@ -320,7 +288,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 // 更新文本框的内容
-                EditText.setText(text);
+                Display.setText(text);
                 calc = true;
             }
         });
@@ -328,7 +296,7 @@ public class MainActivity extends AppCompatActivity {
         Multiplication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String text = EditText.getText().toString();
+                String text = Display.getText().toString();
                 lock = true;
 
                 if (text.isEmpty()) {
@@ -352,7 +320,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 // 更新文本框的内容
-                EditText.setText(text);
+                Display.setText(text);
                 calc = true;
             }
         });
@@ -360,7 +328,7 @@ public class MainActivity extends AppCompatActivity {
         Division.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String text = EditText.getText().toString();
+                String text = Display.getText().toString();
                 lock = true;
 
                 if (text.isEmpty()) {
@@ -384,7 +352,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 // 更新文本框的内容
-                EditText.setText(text);
+                Display.setText(text);
                 calc = true;
             }
         });
@@ -393,7 +361,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 lock = false;
-                String text = EditText.getText().toString();
+                String text = Display.getText().toString();
                 if (!text.isEmpty()) {
                     text = text.replace(",", "");
                     String[] parts = text.split("[\\+\\-\\×\\÷]");
@@ -483,7 +451,7 @@ public class MainActivity extends AppCompatActivity {
 
                         }
 
-                        EditText.setText(resultText);
+                        Display.setText(resultText);
                         Result.setText(decimalText);
 
                         isEqualPressed = true;
@@ -497,7 +465,7 @@ public class MainActivity extends AppCompatActivity {
         Delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String text = EditText.getText().toString();
+                String text = Display.getText().toString();
                 lock = true;
 
                 if (check == 1 || check == 2 || check == 3 || check == 4) {
@@ -514,7 +482,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (!text.isEmpty()) {
                     text = text.substring(0, text.length() - 1);
-                    EditText.setText(text);
+                    Display.setText(text);
                 }
             }
         });
@@ -524,20 +492,19 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 lock = true;
                 check = 0;
-                EditText.setText(""); // 清空文本框
+                Display.setText(""); // 清空文本框
                 Summand.setText("");
                 Addend.setText("");
                 Result.setText("");
                 Operator.setText("");
             }
         });
-
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString("EditTextText", EditText.getText().toString());
+        outState.putString("EditTextText", Display.getText().toString());
         outState.putString("SummandText", Summand.getText().toString());
         outState.putString("AddendText", Addend.getText().toString());
         outState.putString("ResultText", Result.getText().toString());
@@ -565,6 +532,7 @@ public class MainActivity extends AppCompatActivity {
         outState.putInt("addendTextColor", Addend.getCurrentTextColor());
     }
 
+
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
@@ -580,7 +548,7 @@ public class MainActivity extends AppCompatActivity {
 
         // 恢复EditText的背景
         int editTextBackground = savedInstanceState.getInt("editTextBackground");
-        EditText.setBackgroundResource(editTextBackground);
+        Display.setBackgroundResource(editTextBackground);
 
         // 恢复按钮的文本颜色
         One.setTextColor(savedInstanceState.getInt("oneTextColor"));
@@ -596,28 +564,28 @@ public class MainActivity extends AppCompatActivity {
         Operator.setTextColor(savedInstanceState.getInt("operatorTextColor"));
         Equal2.setTextColor(savedInstanceState.getInt("equal2TextColor"));
 
-        // 恢复按钮的背景
-        One.setBackgroundResource(savedInstanceState.getInt("oneBackground"));
-        Plus.setBackgroundResource(savedInstanceState.getInt("plusBackground"));
-        Minus.setBackgroundResource(savedInstanceState.getInt("minusBackground"));
-        Multiplication.setBackgroundResource(savedInstanceState.getInt("multiplicationBackground"));
-        Division.setBackgroundResource(savedInstanceState.getInt("divisionBackground"));
-        Equal.setBackgroundResource(savedInstanceState.getInt("equalBackground"));
-        Delete.setBackgroundResource(savedInstanceState.getInt("deleteBackground"));
-        Clear.setBackgroundResource(savedInstanceState.getInt("clearBackground"));
-        Lazy1.setBackgroundResource(savedInstanceState.getInt("lazy1Background"));
-        Lazy2.setBackgroundResource(savedInstanceState.getInt("lazy2Background"));
-        Lazy3.setBackgroundResource(savedInstanceState.getInt("lazy3Background"));
+//        // 恢复按钮的背景
+//        One.setBackgroundResource(savedInstanceState.getInt("oneBackground"));
+//        Plus.setBackgroundResource(savedInstanceState.getInt("plusBackground"));
+//        Minus.setBackgroundResource(savedInstanceState.getInt("minusBackground"));
+//        Multiplication.setBackgroundResource(savedInstanceState.getInt("multiplicationBackground"));
+//        Division.setBackgroundResource(savedInstanceState.getInt("divisionBackground"));
+//        Equal.setBackgroundResource(savedInstanceState.getInt("equalBackground"));
+//        Delete.setBackgroundResource(savedInstanceState.getInt("deleteBackground"));
+//        Clear.setBackgroundResource(savedInstanceState.getInt("clearBackground"));
+//        Lazy1.setBackgroundResource(savedInstanceState.getInt("lazy1Background"));
+//        Lazy2.setBackgroundResource(savedInstanceState.getInt("lazy2Background"));
+//        Lazy3.setBackgroundResource(savedInstanceState.getInt("lazy3Background"));
 
         // 恢复其他需要的数据
-        EditText.setText(editTextText);
+        Display.setText(editTextText);
         Summand.setText(summandText);
         Addend.setText(addendText);
         Result.setText(resultText);
         Operator.setText(operatorText);
         // 根据isBlackBackground设置文本颜色
         int textColor = isBlackBackground ? Color.WHITE : Color.BLACK;
-        EditText.setTextColor(textColor);
+        Display.setTextColor(textColor);
         Summand.setTextColor(textColor);
         Addend.setTextColor(textColor);
         Result.setTextColor(textColor);

@@ -11,7 +11,8 @@
                 android:radius="25dp" />
             <!--漸層顏色-->
             <gradient
-                android:type="radial"
+                android:type="linear"
+                android:angle="45"
                 android:startColor="#5C5A5A"
                 android:endColor="#665C5A5A"
                 android:gradientRadius="90%" />
@@ -26,9 +27,10 @@
             <corners
                 android:radius="20dp" />
             <gradient
-                android:type="radial"
-                android:startColor="#000000"
-                android:endColor="#4D7A7A7A"
+                android:type="linear"
+                android:angle="45"
+                android:startColor="#434343"
+                android:endColor="#000000"
                 android:gradientRadius="90%" />
 
         </shape>
