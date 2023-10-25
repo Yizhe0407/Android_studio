@@ -81,63 +81,33 @@ public class MainActivity extends AppCompatActivity {
         Mode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // 檢查目前背景狀態並設定不同的背景
-                if (isBlackBackground) {
-                    layout.setBackgroundResource(R.drawable.light_background);
-                    Mode.setImageDrawable(getResources().getDrawable(R.drawable.dark_mode_black_36dp));
-                    Display.setBackgroundResource(R.drawable.round_edittext_light);
-                    Display.setTextColor(Color.BLACK);
-                    Operator.setTextColor(Color.BLACK);
-                    Equal2.setTextColor(Color.BLACK);
-                    Lazy1.setTextColor(Color.BLACK);
-                    Lazy1.setBackgroundResource(R.drawable.round_textview_white);
-                    Lazy2.setTextColor(Color.BLACK);
-                    Lazy2.setBackgroundResource(R.drawable.round_textview_white);
-                    Lazy3.setTextColor(Color.BLACK);
-                    Lazy3.setBackgroundResource(R.drawable.round_textview_white);
-                    Summand.setTextColor(Color.BLACK);
-                    Summand.setBackgroundResource(R.drawable.round_textview_white);
-                    Addend.setTextColor(Color.BLACK);
-                    Addend.setBackgroundResource(R.drawable.round_textview_white);
-                    Result.setTextColor(Color.BLACK);
-                    Result.setBackgroundResource(R.drawable.round_textview_white);
-                } else {
-                    layout.setBackgroundResource(R.drawable.dark_background);
-                    Mode.setImageDrawable(getResources().getDrawable(R.drawable.light_mode_white_36dp));
-                    Display.setBackgroundResource(R.drawable.round_edittext_dark);
-                    Display.setTextColor(Color.WHITE);
-                    Operator.setTextColor(Color.WHITE);
-                    Equal2.setTextColor(Color.WHITE);
-                    Lazy1.setTextColor(Color.WHITE);
-                    Lazy1.setBackgroundResource(R.drawable.round_textview_dark);
-                    Lazy2.setTextColor(Color.WHITE);
-                    Lazy2.setBackgroundResource(R.drawable.round_textview_dark);
-                    Lazy3.setTextColor(Color.WHITE);
-                    Lazy3.setBackgroundResource(R.drawable.round_textview_dark);
-                    Summand.setTextColor(Color.WHITE);
-                    Summand.setBackgroundResource(R.drawable.round_textview_dark);
-                    Addend.setTextColor(Color.WHITE);
-                    Addend.setBackgroundResource(R.drawable.round_textview_dark);
-                    Result.setTextColor(Color.WHITE);
-                    Result.setBackgroundResource(R.drawable.round_textview_dark);
+                isBlackBackground = !isBlackBackground;
+
+                TextView[] textViews = { Display, Operator, Equal2, Summand, Addend, Result };
+                Button[] buttons = { One, Plus, Minus, Multiplication, Division, Equal, Delete, Clear, Lazy1, Lazy2, Lazy3 };
+
+                int textColor = isBlackBackground ? Color.WHITE : Color.BLACK ;
+                int text_backgroundResource = isBlackBackground ? R.drawable.round_textview_dark : R.drawable.round_textview_white;
+                int button_backgroundResource = isBlackBackground ? R.drawable.round_corner_dark : R.drawable.round_corner_white;
+
+                for (TextView textView : textViews) {
+                    textView.setTextColor(textColor);
+                    if (textView != Operator && textView != Display && textView != Equal2) {
+                        textView.setBackgroundResource(text_backgroundResource);
+                    }
                 }
-
-                // 定義按鈕數組
-                Button[] buttons = new Button[] { One, Plus, Minus, Multiplication, Division, Equal, Delete, Clear };
-
-                // 設定按鈕文字顏色和背景
-                int textColor = isBlackBackground ? Color.BLACK : Color.WHITE;
-                int backgroundResource = isBlackBackground ? R.drawable.round_corner_white : R.drawable.round_corner_dark;
 
                 for (Button button : buttons) {
                     button.setTextColor(textColor);
-                    button.setBackgroundResource(backgroundResource);
+                    button.setBackgroundResource(button_backgroundResource);
                 }
 
-                // 更新背景狀態
-                isBlackBackground = !isBlackBackground;
+                Display.setBackgroundResource(isBlackBackground ? R.drawable.round_edittext_dark : R.drawable.round_edittext_light);
+                layout.setBackgroundResource(isBlackBackground ? R.drawable.dark_background : R.drawable.light_background);
+                Mode.setImageDrawable(getResources().getDrawable(isBlackBackground ? R.drawable.light_mode_white_36dp : R.drawable.dark_mode_black_36dp));
             }
         });
+
 
         Display.addTextChangedListener(new TextWatcher() {
             @Override
