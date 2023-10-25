@@ -48,6 +48,14 @@ public class MainActivity extends AppCompatActivity {
         Lazy2 = findViewById(R.id.lazy2);
         Lazy3 = findViewById(R.id.lazy3);
 
+        if (savedInstanceState != null) {
+            // Restore the button text color state
+            int textColor = savedInstanceState.getInt("buttonTextColor", Color.BLACK);
+
+            // Apply the appropriate text color based on the saved state
+            One.setTextColor(textColor);
+        }
+
 
         View.OnClickListener lazyClickListener = new View.OnClickListener() {
             @Override
@@ -418,7 +426,6 @@ public class MainActivity extends AppCompatActivity {
                             else {
                                 decimalText = String.valueOf(result);
                             }
-
                         }
 
                         Display.setText(resultText);
@@ -470,70 +477,69 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putString("EditTextText", Display.getText().toString());
-        outState.putString("SummandText", Summand.getText().toString());
-        outState.putString("AddendText", Addend.getText().toString());
-        outState.putString("ResultText", Result.getText().toString());
-        outState.putString("OperatorText", Operator.getText().toString());
-        outState.putString("lazy1Text", Lazy1.getText().toString());
-        outState.putString("lazy2Text", Lazy2.getText().toString());
-        outState.putString("lazy3Text", Lazy3.getText().toString());
-        outState.putBoolean("isBlackBackground", isBlackBackground);
-        // 保存背景设置
-        outState.putInt("layoutBackgroundResource", isBlackBackground ? R.drawable.dark_background : R.drawable.light_background);
-        // 保存EditText的背景资源ID
-        outState.putInt("editTextBackground", isBlackBackground ? R.drawable.round_edittext_dark : R.drawable.round_edittext_light);
-
-        outState.putInt("oneTextColor", One.getCurrentTextColor());
-        outState.putInt("plusTextColor", Plus.getCurrentTextColor());
-        outState.putInt("minusTextColor", Minus.getCurrentTextColor());
-        outState.putInt("multiplicationTextColor", Multiplication.getCurrentTextColor());
-        outState.putInt("divisionTextColor", Division.getCurrentTextColor());
-        outState.putInt("equalTextColor", Equal.getCurrentTextColor());
-        outState.putInt("deleteTextColor", Delete.getCurrentTextColor());
-        outState.putInt("clearTextColor", Clear.getCurrentTextColor());
-        outState.putInt("operatorTextColor", Operator.getCurrentTextColor());
-        outState.putInt("equal2TextColor", Equal2.getCurrentTextColor());
-        outState.putInt("summandTextColor", Summand.getCurrentTextColor());
-        outState.putInt("addendTextColor", Addend.getCurrentTextColor());
-    }
-
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        String editTextText = savedInstanceState.getString("EditTextText");
-        String summandText = savedInstanceState.getString("SummandText");
-        String addendText = savedInstanceState.getString("AddendText");
-        String resultText = savedInstanceState.getString("ResultText");
-        String operatorText = savedInstanceState.getString("OperatorText");
-        isBlackBackground = savedInstanceState.getBoolean("isBlackBackground");
-        // 恢复背景设置
-        int layoutBackgroundResource = savedInstanceState.getInt("layoutBackgroundResource");
-        layout.setBackgroundResource(layoutBackgroundResource);
-
-        // 恢复EditText的背景
-        int editTextBackground = savedInstanceState.getInt("editTextBackground");
-        Display.setBackgroundResource(editTextBackground);
-
-        // 恢复按钮的文本颜色
-        One.setTextColor(savedInstanceState.getInt("oneTextColor"));
-        Plus.setTextColor(savedInstanceState.getInt("plusTextColor"));
-        Minus.setTextColor(savedInstanceState.getInt("minusTextColor"));
-        Multiplication.setTextColor(savedInstanceState.getInt("multiplicationTextColor"));
-        Division.setTextColor(savedInstanceState.getInt("divisionTextColor"));
-        Equal.setTextColor(savedInstanceState.getInt("equalTextColor"));
-        Delete.setTextColor(savedInstanceState.getInt("deleteTextColor"));
-        Clear.setTextColor(savedInstanceState.getInt("clearTextColor"));
-
-        // 恢复TextView的文本颜色
-        Operator.setTextColor(savedInstanceState.getInt("operatorTextColor"));
-        Equal2.setTextColor(savedInstanceState.getInt("equal2TextColor"));
-
+//    @Override
+//    protected void onSaveInstanceState(Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//        outState.putString("EditTextText", Display.getText().toString());
+//        outState.putString("SummandText", Summand.getText().toString());
+//        outState.putString("AddendText", Addend.getText().toString());
+//        outState.putString("ResultText", Result.getText().toString());
+//        outState.putString("OperatorText", Operator.getText().toString());
+//        outState.putString("lazy1Text", Lazy1.getText().toString());
+//        outState.putString("lazy2Text", Lazy2.getText().toString());
+//        outState.putString("lazy3Text", Lazy3.getText().toString());
+//        outState.putBoolean("isBlackBackground", isBlackBackground);
+//        // 保存背景设置
+//        outState.putInt("layoutBackgroundResource", isBlackBackground ? R.drawable.dark_background : R.drawable.light_background);
+//        // 保存EditText的背景资源ID
+//        outState.putInt("editTextBackground", isBlackBackground ? R.drawable.round_edittext_dark : R.drawable.round_edittext_light);
+//
+//        outState.putInt("oneTextColor", One.getCurrentTextColor());
+//        outState.putInt("plusTextColor", Plus.getCurrentTextColor());
+//        outState.putInt("minusTextColor", Minus.getCurrentTextColor());
+//        outState.putInt("multiplicationTextColor", Multiplication.getCurrentTextColor());
+//        outState.putInt("divisionTextColor", Division.getCurrentTextColor());
+//        outState.putInt("equalTextColor", Equal.getCurrentTextColor());
+//        outState.putInt("deleteTextColor", Delete.getCurrentTextColor());
+//        outState.putInt("clearTextColor", Clear.getCurrentTextColor());
+//        outState.putInt("operatorTextColor", Operator.getCurrentTextColor());
+//        outState.putInt("equal2TextColor", Equal2.getCurrentTextColor());
+//        outState.putInt("summandTextColor", Summand.getCurrentTextColor());
+//        outState.putInt("addendTextColor", Addend.getCurrentTextColor());
+//    }
+//
+//
+//    @Override
+//    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+//        super.onRestoreInstanceState(savedInstanceState);
+//        String editTextText = savedInstanceState.getString("EditTextText");
+//        String summandText = savedInstanceState.getString("SummandText");
+//        String addendText = savedInstanceState.getString("AddendText");
+//        String resultText = savedInstanceState.getString("ResultText");
+//        String operatorText = savedInstanceState.getString("OperatorText");
+//        isBlackBackground = savedInstanceState.getBoolean("isBlackBackground");
+//        // 恢复背景设置
+//        int layoutBackgroundResource = savedInstanceState.getInt("layoutBackgroundResource");
+//        layout.setBackgroundResource(layoutBackgroundResource);
+//
+//        // 恢复EditText的背景
+//        int editTextBackground = savedInstanceState.getInt("editTextBackground");
+//        Display.setBackgroundResource(editTextBackground);
+//
+//        // 恢复按钮的文本颜色
+//        One.setTextColor(savedInstanceState.getInt("oneTextColor"));
+//        Plus.setTextColor(savedInstanceState.getInt("plusTextColor"));
+//        Minus.setTextColor(savedInstanceState.getInt("minusTextColor"));
+//        Multiplication.setTextColor(savedInstanceState.getInt("multiplicationTextColor"));
+//        Division.setTextColor(savedInstanceState.getInt("divisionTextColor"));
+//        Equal.setTextColor(savedInstanceState.getInt("equalTextColor"));
+//        Delete.setTextColor(savedInstanceState.getInt("deleteTextColor"));
+//        Clear.setTextColor(savedInstanceState.getInt("clearTextColor"));
+//
+//        // 恢复TextView的文本颜色
+//        Operator.setTextColor(savedInstanceState.getInt("operatorTextColor"));
+//        Equal2.setTextColor(savedInstanceState.getInt("equal2TextColor"));
+//
 //        // 恢复按钮的背景
 //        One.setBackgroundResource(savedInstanceState.getInt("oneBackground"));
 //        Plus.setBackgroundResource(savedInstanceState.getInt("plusBackground"));
@@ -546,22 +552,22 @@ public class MainActivity extends AppCompatActivity {
 //        Lazy1.setBackgroundResource(savedInstanceState.getInt("lazy1Background"));
 //        Lazy2.setBackgroundResource(savedInstanceState.getInt("lazy2Background"));
 //        Lazy3.setBackgroundResource(savedInstanceState.getInt("lazy3Background"));
-
-        // 恢复其他需要的数据
-        Display.setText(editTextText);
-        Summand.setText(summandText);
-        Addend.setText(addendText);
-        Result.setText(resultText);
-        Operator.setText(operatorText);
-        // 根据isBlackBackground设置文本颜色
-        int textColor = isBlackBackground ? Color.WHITE : Color.BLACK;
-        Display.setTextColor(textColor);
-        Summand.setTextColor(textColor);
-        Addend.setTextColor(textColor);
-        Result.setTextColor(textColor);
-        Operator.setTextColor(textColor);
-        Lazy1.setTextColor(textColor);
-        Lazy2.setTextColor(textColor);
-        Lazy3.setTextColor(textColor);
-    }
+//
+//        // 恢复其他需要的数据
+//        Display.setText(editTextText);
+//        Summand.setText(summandText);
+//        Addend.setText(addendText);
+//        Result.setText(resultText);
+//        Operator.setText(operatorText);
+//        // 根据isBlackBackground设置文本颜色
+//        int textColor = isBlackBackground ? Color.WHITE : Color.BLACK;
+//        Display.setTextColor(textColor);
+//        Summand.setTextColor(textColor);
+//        Addend.setTextColor(textColor);
+//        Result.setTextColor(textColor);
+//        Operator.setTextColor(textColor);
+//        Lazy1.setTextColor(textColor);
+//        Lazy2.setTextColor(textColor);
+//        Lazy3.setTextColor(textColor);
+//    }
 }
