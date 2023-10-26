@@ -1,6 +1,6 @@
 package com.example.myapplication.Domian;
 
-public class Sliderltems {
+public class SliderItems {
     private int image;
 
     public int getImage() {
